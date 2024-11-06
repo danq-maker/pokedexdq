@@ -1,79 +1,162 @@
-body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    background-color: #ff0000;
-    /* Fondo rojo */
-}
-
+/* Contenedor principal con efecto de plástico y textura */
 .pokedex-view {
     width: 100%;
     max-width: 500px;
-    /* Máximo ancho para mantenerlo responsivo */
     height: 100vh;
     margin: 20px;
-    background: red;
-    border: 3px solid rgba(255, 0, 0, 0.527);
+    background: linear-gradient(145deg, #cc0000 0%, #ff0000 70%, #e60000 100%);
+    border: 12px solid #7b0000;
     border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    gap: 20px;
-    color: white;
+    box-shadow:
+        inset 0 0 20px rgba(0, 0, 0, 0.4),
+        -5px -5px 15px rgba(255, 255, 255, 0.1),
+        5px 5px 15px rgba(0, 0, 0, 0.4);
+    position: relative;
+    padding: 25px;
+    overflow: hidden;
+}
+
+/* Detalles decorativos de la Pokédex */
+.pokedex-view::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, #3298cb 60%, #2573a7 100%);
+    border: 4px solid #fff;
+    border-radius: 50%;
+    box-shadow:
+        0 0 10px rgba(50, 152, 203, 0.8),
+        inset 0 0 15px rgba(0, 0, 0, 0.5);
+    animation: glowPulse 2s infinite;
 }
 
 .title {
-    font-size: 1.5rem;
-    /* Ajuste responsivo */
-    letter-spacing: 2px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 28px;
+    color: #ffcb05;
+    text-shadow:
+        2px 2px #000,
+        -1px -1px 0 #7b0000,
+        1px -1px 0 #7b0000,
+        -1px 1px 0 #7b0000,
+        1px 1px 0 #7b0000;
     text-align: center;
-    /* Centrado para pantallas pequeñas */
-}
-
-.pokedex {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 20px;
+    margin: 30px 0;
+    letter-spacing: 3px;
+    transform: perspective(500px) rotateX(10deg);
 }
 
 .rectangle1 {
-    flex: 1;
-    background-color: #ffffff;
-    /* Fondo blanco */
-    border: 3px solid rgba(255, 0, 0, 0.527);
-    border-radius: 10px;
+    background: #f0f0f0;
+    border: 6px solid #404040;
+    border-radius: 15px;
+    padding: 20px;
+    position: relative;
+    box-shadow:
+        inset 0 0 20px rgba(0, 0, 0, 0.2),
+        0 5px 15px rgba(0, 0, 0, 0.3);
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
-.rectangle1::before {
-    top: 5px;
-    right: 5px;
-    width: 5px;
-    height: 5px;
+/* Luces LED mejoradas */
+.led-lights {
+    position: absolute;
+    top: 15px;
+    left: 90px;
+    display: flex;
+    gap: 15px;
+}
+
+.led {
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
+    border: 2px solid #404040;
+    box-shadow:
+        0 0 10px currentColor,
+        inset 0 0 5px rgba(255, 255, 255, 0.5);
 }
 
-@keyframes blink {
+/* Agregar un efecto de "pantalla" a la sección principal */
+.pokedex {
+    position: relative;
+    overflow: hidden;
+}
 
-    0%,
+.pokedex::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(to bottom,
+            rgba(255, 255, 255, 0.15) 0%,
+            rgba(255, 255, 255, 0.05) 100%);
+    pointer-events: none;
+}
+
+/* Efecto de líneas de escaneo */
+.pokedex::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        repeating-linear-gradient(0deg,
+            rgba(0, 0, 0, 0.15),
+            rgba(0, 0, 0, 0.15) 1px,
+            transparent 1px,
+            transparent 2px);
+    pointer-events: none;
+    animation: scanlines 10s linear infinite;
+}
+
+@keyframes scanlines {
+    0% {
+        transform: translateY(0);
+    }
+
     100% {
-        opacity: 1;
+        transform: translateY(100%);
+    }
+}
+
+/* Animaciones mejoradas */
+@keyframes glowPulse {
+    0% {
+        box-shadow: 0 0 10px currentColor;
     }
 
     50% {
-        opacity: 0.5;
+        box-shadow: 0 0 20px currentColor, 0 0 30px currentColor;
+    }
+
+    100% {
+        box-shadow: 0 0 10px currentColor;
     }
 }
 
-/* Ajustes para pantallas pequeñas */
-@media (max-width: 600px) {
-    .title {
-        font-size: 1.2rem;
+@keyframes blink {
+    0% {
+        opacity: 1;
+        box-shadow: 0 0 10px currentColor;
     }
 
-    .rectangle1 {
-        padding: 10px;
+    50% {
+        opacity: 0.6;
+        box-shadow: 0 0 5px currentColor;
+    }
+
+    100% {
+        opacity: 1;
+        box-shadow: 0 0 10px currentColor;
     }
 }

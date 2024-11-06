@@ -1,71 +1,93 @@
-/* pokedex.component.css */
 .imagePoke {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 10px;
+    background: linear-gradient(160deg, #98cb98 0%, #86b886 100%);
+    border: 6px solid #306230;
+    border-radius: 15px;
+    padding: 20px;
+    position: relative;
+    box-shadow:
+        inset 0 0 20px rgba(0, 0, 0, 0.2),
+        0 5px 15px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.imagePoke::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(45deg,
+            rgba(255, 255, 255, 0.1) 25%,
+            transparent 25%,
+            transparent 75%,
+            rgba(255, 255, 255, 0.1) 75%);
+    background-size: 10px 10px;
+    opacity: 0.5;
 }
 
 .imagePoke img {
+    image-rendering: pixelated;
+    filter: contrast(1.1) brightness(1.1);
     max-width: 100%;
-    height: 300px;
-    object-fit: contain;
-    margin-bottom: 20px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+.imagePoke img:hover {
+    transform: scale(1.2);
 }
 
 .controls-container {
     display: flex;
+    justify-content: space-around;
     align-items: center;
-    gap: 25px;
-    padding: 10px 20px;
+    margin-top: 20px;
 }
 
-/* Flechas en lugar de botones */
 .control-btn {
     width: 60px;
     height: 60px;
-    color: red;
-    font-size: 40px;
+    background: linear-gradient(145deg, #404040, #303030);
+    border: 4px solid #202020;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 24px;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     transition: all 0.2s ease;
-    background: none;
-    border: none;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.3),
+        inset 0 -2px 5px rgba(255, 255, 255, 0.2);
 }
 
-/* Estilo hover para las flechas */
-.control-btn:hover {
-    color: #ff4d4d;
-    transform: scale(1.2);
+.control-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(to right,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.3) 50%,
+            rgba(255, 255, 255, 0) 100%);
+    transform: skewX(-25deg);
+    transition: all 0.5s ease;
+}
+
+.control-btn:hover::before {
+    left: 100%;
 }
 
 .control-btn:active {
-    color: #cc0000;
-    transform: scale(0.9);
-}
-
-/* Eliminar el botón central */
-.control-center {
-    display: none;
-}
-
-@media (max-width: 576px) {
-    .imagePoke img {
-        height: 250px;
-    }
-
-    .controls-container {
-        gap: 15px;
-        padding: 8px 15px;
-    }
-
-    .control-btn {
-        width: 25px;
-        height: 25px;
-        font-size: 18px;
-    }
+    transform: scale(0.95) translateY(2px);
+    box-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.3),
+        inset 0 -1px 3px rgba(255, 255, 255, 0.2);
 }
