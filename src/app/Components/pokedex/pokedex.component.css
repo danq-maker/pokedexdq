@@ -1,0 +1,71 @@
+/* pokedex.component.css */
+.imagePoke {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+}
+
+.imagePoke img {
+    max-width: 100%;
+    height: 300px;
+    object-fit: contain;
+    margin-bottom: 20px;
+}
+
+.controls-container {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 10px 20px;
+}
+
+/* Flechas en lugar de botones */
+.control-btn {
+    width: 60px;
+    height: 60px;
+    color: red;
+    font-size: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    background: none;
+    border: none;
+}
+
+/* Estilo hover para las flechas */
+.control-btn:hover {
+    color: #ff4d4d;
+    transform: scale(1.2);
+}
+
+.control-btn:active {
+    color: #cc0000;
+    transform: scale(0.9);
+}
+
+/* Eliminar el botón central */
+.control-center {
+    display: none;
+}
+
+@media (max-width: 576px) {
+    .imagePoke img {
+        height: 250px;
+    }
+
+    .controls-container {
+        gap: 15px;
+        padding: 8px 15px;
+    }
+
+    .control-btn {
+        width: 25px;
+        height: 25px;
+        font-size: 18px;
+    }
+}
